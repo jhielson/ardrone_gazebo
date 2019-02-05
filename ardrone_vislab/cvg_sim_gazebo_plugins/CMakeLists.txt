@@ -135,13 +135,13 @@ add_library(hector_gazebo_quadrotor_state_controller src/quadrotor_state_control
 add_dependencies(hector_gazebo_quadrotor_state_controller ardrone_autonomy_gencpp)
 target_link_libraries(hector_gazebo_quadrotor_state_controller ${image_transport_LIBRARIES})
 
-add_library(aruco_plugin src/aruco_plugin.cpp)
-target_link_libraries(
-  aruco_plugin
-  ${catkin_LIBRARIES}
-  ${OpenCV_LIBRARIES}
-  ${ARUCO_LIBRARY}
-)
+#add_library(aruco_plugin src/aruco_plugin.cpp)
+#target_link_libraries(
+ # aruco_plugin
+  #${catkin_LIBRARIES}
+  #${OpenCV_LIBRARIES}
+  #${ARUCO_LIBRARY}
+#)
 
 
 ## Declare a cpp executable

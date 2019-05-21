@@ -5,16 +5,19 @@
   
   <arg name="use_sim_time" default="true"/>
   <arg name="gui" default="true"/>
-  <arg name="world" default="isr_7th_floor.world" />
+  <arg name="world" default="crop.world" />
   <arg name="spawn_drone" default="true" />
+  <arg name="spawn_turtlebot" default="true" />
 
   <!-- start up world -->
-    <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
-<!--include file="$(find ardrone_vislab_gazebo)/launch/ardrone_sim_world.launch">
+    <!--include file="$(find gazebo_ros)/launch/empty_world.launch"/ -->
+  <include file="$(find ardrone_vislab_gazebo)/launch/ardrone_sim_world.launch">
   	<arg name="use_sim_time" value="$(arg use_sim_time)" />
   	<arg name="gui" value="$(arg gui)" />
   	<arg name="world" value="$(arg world)" />
-  </include> -->
+  </include>
+
+  <!-- Quadrotor -->
 
   <group if="$(arg spawn_drone)" ns="quadrotor1">
   <!-- Spawn simulated quadrotor uav -->
@@ -33,6 +36,73 @@
     		<arg name="namespace" value="quadrotor2"/> 
   	</include>
   </group>
-  
+
+
+  <!-- Turtlebot -->
+
+  <arg name="base"      value="$(optenv TURTLEBOT_BASE kobuki)"/> <!-- create, roomba -->
+  <arg name="battery"   value="$(optenv TURTLEBOT_BATTERY /proc/acpi/battery/BAT0)"/>  <!-- /proc/acpi/battery/BAT0 -->
+  <arg name="stacks"    value="$(optenv TURTLEBOT_STACKS hexagons)"/>  <!-- circles, hexagons -->
+  <arg name="3d_sensor" value="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>  <!-- kinect, asus_xtion_pro -->
+
+  <group if="$(arg spawn_turtlebot)" ns="turtlebot1">
+  <!-- Spawn simulated turtlebot -->
+      <include file="$(find ardrone_vislab_gazebo)/launch/includes/$(arg base).launch.xml">
+          <arg name="base" value="$(arg base)"/>
+          <arg name="stacks" value="$(arg stacks)"/>
+          <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+          <arg name="position" value="-x -2 -y -1 -z 1"/>
+          <arg name="model_robot" value="turtlebot1"/>
+      </include>
+
+      <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+          <param name="publish_frequency" type="double" value="30.0" />
+      </node>
+  </group>
+
+  <group if="$(arg spawn_turtlebot)" ns="turtlebot2">
+  <!-- Spawn simulated turtlebot -->
+      <include file="$(find ardrone_vislab_gazebo)/launch/includes/$(arg base).launch.xml">
+          <arg name="base" value="$(arg base)"/>
+          <arg name="stacks" value="$(arg stacks)"/>
+          <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+          <arg name="position" value="-x 2 -y -1 -z 1"/>
+	  <arg name="model_robot" value="turtlebot2"/>
+      </include>
+
+      <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+          <param name="publish_frequency" type="double" value="30.0" />
+      </node>
+  </group>
+
+  <group if="$(arg spawn_turtlebot)" ns="turtlebot3">
+  <!-- Spawn simulated turtlebot -->
+      <include file="$(find ardrone_vislab_gazebo)/launch/includes/$(arg base).launch.xml">
+          <arg name="base" value="$(arg base)"/>
+          <arg name="stacks" value="$(arg stacks)"/>
+          <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+          <arg name="position" value="-x 3 -y 1 -z 1"/>
+          <arg name="model_robot" value="turtlebot3"/>
+      </include>
+
+      <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+          <param name="publish_frequency" type="double" value="30.0" />
+      </node>
+  </group>
+
+  <group if="$(arg spawn_turtlebot)" ns="turtlebot4">
+  <!-- Spawn simulated turtlebot -->
+      <include file="$(find ardrone_vislab_gazebo)/launch/includes/$(arg base).launch.xml">
+          <arg name="base" value="$(arg base)"/>
+          <arg name="stacks" value="$(arg stacks)"/>
+          <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
+          <arg name="position" value="-x 2 -y 2 -z 1"/>
+          <arg name="model_robot" value="turtlebot4"/>
+      </include>
+
+      <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+          <param name="publish_frequency" type="double" value="30.0" />
+      </node>
+  </group>
 
 </launch>

@@ -58,6 +58,17 @@
       <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
           <param name="publish_frequency" type="double" value="30.0" />
       </node>
+
+      <!-- Fake laser -->
+      <node pkg="nodelet" type="nodelet" name="laserscan_nodelet_manager" args="manager"/>
+      <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan"
+            args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet laserscan_nodelet_manager">
+        <param name="scan_height" value="10"/>
+        <param name="output_frame_id" value="/turtlebot1/camera_depth_frame"/>
+        <param name="range_min" value="0.45"/>
+        <remap from="image" to="/turtlebot1/camera/depth/image_raw"/>
+        <remap from="scan" to="/turtlebot1/scan"/>
+      </node>
   </group>
 
   <group if="$(arg spawn_turtlebot)" ns="turtlebot2">
@@ -72,6 +83,17 @@
 
       <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
           <param name="publish_frequency" type="double" value="30.0" />
+      </node>
+
+      <!-- Fake laser -->
+      <node pkg="nodelet" type="nodelet" name="laserscan_nodelet_manager" args="manager"/>
+      <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan"
+            args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet laserscan_nodelet_manager">
+        <param name="scan_height" value="10"/>
+        <param name="output_frame_id" value="/turtlebot1/camera_depth_frame"/>
+        <param name="range_min" value="0.45"/>
+        <remap from="image" to="/turtlebot2/camera/depth/image_raw"/>
+        <remap from="scan" to="/turtlebot2/scan"/>
       </node>
   </group>
 
@@ -88,6 +110,17 @@
       <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
           <param name="publish_frequency" type="double" value="30.0" />
       </node>
+
+      <!-- Fake laser -->
+      <node pkg="nodelet" type="nodelet" name="laserscan_nodelet_manager" args="manager"/>
+      <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan"
+            args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet laserscan_nodelet_manager">
+        <param name="scan_height" value="10"/>
+        <param name="output_frame_id" value="/turtlebot1/camera_depth_frame"/>
+        <param name="range_min" value="0.45"/>
+        <remap from="image" to="/turtlebot3/camera/depth/image_raw"/>
+        <remap from="scan" to="/turtlebot3/scan"/>
+      </node>
   </group>
 
   <group if="$(arg spawn_turtlebot)" ns="turtlebot4">
@@ -102,6 +135,17 @@
 
       <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
           <param name="publish_frequency" type="double" value="30.0" />
+      </node>
+
+      <!-- Fake laser -->
+      <node pkg="nodelet" type="nodelet" name="laserscan_nodelet_manager" args="manager"/>
+      <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan"
+            args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet laserscan_nodelet_manager">
+        <param name="scan_height" value="10"/>
+        <param name="output_frame_id" value="/turtlebot1/camera_depth_frame"/>
+        <param name="range_min" value="0.45"/>
+        <remap from="image" to="/turtlebot4/camera/depth/image_raw"/>
+        <remap from="scan" to="/turtlebot4/scan"/>
       </node>
   </group>
 

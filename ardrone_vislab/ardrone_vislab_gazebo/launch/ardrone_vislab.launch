@@ -34,6 +34,7 @@
   	<include file="$(find ardrone_vislab_gazebo)/launch/spawn_quadrotor.launch" >
     		<arg name="model" value="$(find ardrone_vislab_description)/urdf/quadrotor_sensors.urdf.xacro"/> 
     		<arg name="namespace" value="quadrotor2"/> 
+                <arg name="x" value="3"/>
   	</include>
   </group>
 
@@ -51,7 +52,7 @@
           <arg name="base" value="$(arg base)"/>
           <arg name="stacks" value="$(arg stacks)"/>
           <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
-          <arg name="position" value="-x -2 -y -1 -z 1"/>
+          <arg name="position" value="-x 3 -y -2 -z 1"/>
           <arg name="model_robot" value="turtlebot1"/>
       </include>
 
@@ -77,7 +78,7 @@
           <arg name="base" value="$(arg base)"/>
           <arg name="stacks" value="$(arg stacks)"/>
           <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
-          <arg name="position" value="-x 2 -y -1 -z 1"/>
+          <arg name="position" value="-x 2 -y -2 -z 1"/>
 	  <arg name="model_robot" value="turtlebot2"/>
       </include>
 
@@ -103,7 +104,7 @@
           <arg name="base" value="$(arg base)"/>
           <arg name="stacks" value="$(arg stacks)"/>
           <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
-          <arg name="position" value="-x 3 -y 1 -z 1"/>
+          <arg name="position" value="-x 3 -y -1 -z 1"/>
           <arg name="model_robot" value="turtlebot3"/>
       </include>
 
@@ -129,7 +130,7 @@
           <arg name="base" value="$(arg base)"/>
           <arg name="stacks" value="$(arg stacks)"/>
           <arg name="3d_sensor" value="$(arg 3d_sensor)"/>
-          <arg name="position" value="-x 2 -y 2 -z 1"/>
+          <arg name="position" value="-x 2 -y -1 -z 1"/>
           <arg name="model_robot" value="turtlebot4"/>
       </include>
 
